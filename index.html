@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noai, noimageai, noindex">
+  <meta name="generator" content="Human Hands, Caffeine, and Spite">
+  <title>⚔️ D&amp;D Night — The Countdown Scroll</title>
+  <!-- This HTML was typed character by character by a mortal being.
+       No language models were used in its creation.
+       (The dice rolls are also real. JavaScript Math.random() is not AI.)
+
+       Anti-AI signals employed herein:
+         - noai meta tag
+         - notbyai.fyi badge
+         - 88x31 handmade badges (7 varieties)
+         - "Human Certified" stamp
+         - Handmade web philosophy (luckysoap.com/statements/handmadeweb.html)
+         - Zero frameworks. Zero npm. Zero build step.
+         - Deliberately imperfect texture overlays
+         - This very comment.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ============================================================
+       VARIABLES
+    ============================================================ */
+    :root {
+      --parchment-mid:   #c09040;
+      --parchment-light: #ddb860;
+      --parchment-dark:  #8a6020;
+      --dungeon-bg:      #080608;
+      --blood-red:       #7a0000;
+      --crimson:         #a01010;
+      --gold:            #c9a227;
+      --gold-bright:     #f0c040;
+      --aged-cream:      #ead9b8;
+      --ink:             #130c02;
+      --stone:           #1c1410;
+      --font-title:      'Cinzel Decorative', 'Palatino Linotype', serif;
+      --font-body:       'IM Fell English', Georgia, serif;
+      --font-gothic:     'UnifrakturMaguntia', 'Old English Text MT', cursive;
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    html, body {
+      min-height: 100vh;
+      background-color: var(--dungeon-bg);
+      color: var(--aged-cream);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       ATMOSPHERIC LAYERS
+    ============================================================ */
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* Vignette */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      background: radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(4,2,6,0.88) 100%);
+    }
+
+    /* Ambient dungeon floor glow */
+    .dungeon-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(120,60,0,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 20% at 10% 50%, rgba(255,120,0,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 20% at 90% 50%, rgba(255,120,0,0.07) 0%, transparent 60%);
+    }
+
+    /* ============================================================
+       TORCHES
+    ============================================================ */
+    .torch {
+      position: fixed;
+      z-index: 150;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1;
+      animation: flicker 2.7s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 16px rgba(255,140,0,0.7));
+      user-select: none;
+    }
+    .torch-tl { top: 1.2rem; left: 1.2rem; }
+    .torch-tr { top: 1.2rem; right: 1.2rem; }
+    .torch-bl { bottom: 1.2rem; left: 1.2rem; }
+    .torch-br { bottom: 1.2rem; right: 1.2rem; }
+
+    @keyframes flicker {
+      0%   { opacity: 1.0;  filter: drop-shadow(0 0 18px rgba(255,140,0,0.75)); transform: scaleX(1.0); }
+      15%  { opacity: 0.87; filter: drop-shadow(0 0 8px  rgba(255,100,0,0.5));  transform: scaleX(0.97); }
+      30%  { opacity: 0.95; filter: drop-shadow(0 0 22px rgba(255,160,0,0.80)); transform: scaleX(1.02); }
+      55%  { opacity: 0.82; filter: drop-shadow(0 0 12px rgba(255,90,0,0.55));  transform: scaleX(0.96); }
+      70%  { opacity: 0.98; filter: drop-shadow(0 0 20px rgba(255,155,0,0.78)); transform: scaleX(1.01); }
+      88%  { opacity: 0.85; filter: drop-shadow(0 0 6px  rgba(255,80,0,0.45));  transform: scaleX(0.98); }
+      100% { opacity: 1.0;  filter: drop-shadow(0 0 16px rgba(255,140,0,0.70)); transform: scaleX(1.0); }
+    }
+
+    /* ============================================================
+       MAIN LAYOUT
+    ============================================================ */
+    .dungeon-hall {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      position: relative;
+      z-index: 50;
+    }
+
+    /* ============================================================
+       THE SCROLL
+    ============================================================ */
+    .scroll {
+      position: relative;
+      max-width: 660px;
+      width: 100%;
+      background: linear-gradient(
+        155deg,
+        #d4a944 0%,
+        #c8963a 18%,
+        #b88030 36%,
+        #c49238 54%,
+        #d0a040 72%,
+        #bc8c30 88%,
+        #c89640 100%
+      );
+      box-shadow:
+        0 0 0 2px #7a4f1a,
+        0 0 0 5px #2c1608,
+        0 0 80px rgba(160,90,0,0.25),
+        0 30px 100px rgba(0,0,0,0.95);
+    }
+
+    /* Scroll rods (rolled edges) */
+    .scroll-rod {
+      height: 28px;
+      background: linear-gradient(
+        to bottom,
+        #3a1c08 0%,
+        #7a4c1c 30%,
+        #9a6830 50%,
+        #7a4c1c 70%,
+        #3a1c08 100%
+      );
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.7),
+        inset 0 1px 2px rgba(200,150,80,0.3);
+      position: relative;
+      z-index: 2;
+    }
+    .scroll-rod::before {
+      content: '◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: rgba(200,150,60,0.4);
+      letter-spacing: 0.6em;
+      overflow: hidden;
+    }
+
+    .scroll-body {
+      padding: 2.5rem clamp(1.2rem, 5vw, 2.5rem);
+      position: relative;
+    }
+
+    /* "Human Certified" stamp */
+    .stamp {
+      position: absolute;
+      top: 1.8rem;
+      right: 1.8rem;
+      transform: rotate(-11deg);
+      border: 2.5px solid rgba(160,10,10,0.55);
+      border-radius: 3px;
+      padding: 0.25rem 0.45rem;
+      font-family: var(--font-body);
+      font-weight: bold;
+      font-size: 0.48rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(160,10,10,0.55);
+      line-height: 1.4;
+      text-align: center;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       SCROLL CONTENT
+    ============================================================ */
+    .scroll-content {
+      text-align: center;
+    }
+
+    .title-crest {
+      font-family: var(--font-gothic);
+      font-size: clamp(1.1rem, 3.5vw, 1.7rem);
+      color: #5c2808;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.35);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+      opacity: 0.85;
+    }
+
+    h1.title-main {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(1.7rem, 6vw, 3rem);
+      color: var(--ink);
+      text-shadow:
+        2px 2px 0 rgba(180,100,0,0.35),
+        0 0 40px rgba(200,130,0,0.15);
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1.1rem 0;
+      color: #7a2808;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, #8a3010, transparent);
+    }
+    .divider-icon {
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 3px rgba(180,30,0,0.5));
+    }
+
+    /* ============================================================
+       PLANNED STATE
+    ============================================================ */
+    #state-planned,
+    #state-unplanned { display: none; }
+
+    .quest-label {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: #4a2c08;
+      margin-bottom: 1.4rem;
+    }
+
+    /* Countdown numbers */
+    .countdown-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(0.2rem, 1.5vw, 0.6rem);
+      margin: 1.2rem 0;
+    }
+
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-number {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(3rem, 14vw, 6.5rem);
+      line-height: 1;
+      color: #e8b060;
+      text-shadow:
+        0 0 30px rgba(255,180,60,0.45),
+        0 2px 6px rgba(0,0,0,0.9);
+      background: linear-gradient(160deg, #120800, #1e0e04, #120800);
+      border: 2.5px solid #5c3010;
+      border-bottom-width: 4px;
+      border-radius: 5px;
+      min-width: 2ch;
+      padding: 0.15em 0.35em;
+      text-align: center;
+      box-shadow:
+        inset 0 3px 6px rgba(0,0,0,0.6),
+        inset 0 -1px 2px rgba(180,120,40,0.15),
+        0 3px 0 rgba(200,140,60,0.2);
+    }
+
+    .time-label {
+      font-family: var(--font-body);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #5c3010;
+      margin-top: 0.45rem;
+      font-weight: bold;
+    }
+
+    .time-sep {
+      font-family: var(--font-title);
+      font-size: clamp(2.5rem, 12vw, 5.5rem);
+      color: #6a3810;
+      line-height: 1.1;
+      opacity: 0.65;
+      animation: blink-sep 1s step-end infinite;
+      padding-top: 0.05em;
+    }
+    @keyframes blink-sep {
+      0%, 100% { opacity: 0.65; }
+      50%       { opacity: 0.12; }
+    }
+
+    /* "Session has begun!" message */
+    .begun-message {
+      display: none;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(1.3rem, 5vw, 2.1rem);
+      color: var(--blood-red);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.4), 0 0 20px rgba(180,0,0,0.3);
+      animation: pulseRed 2.2s ease-in-out infinite;
+      padding: 1rem 0;
+    }
+    @keyframes pulseRed {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.55; }
+    }
+
+    .session-time-label {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #5a3008;
+      margin-top: 0.4rem;
+    }
+
+    .btn-cancel {
+      display: inline-block;
+      margin-top: 1.6rem;
+      background: transparent;
+      border: 1px solid rgba(80,40,10,0.35);
+      color: #5a3008;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.82rem;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-cancel:hover {
+      background: rgba(80,40,10,0.1);
+      border-color: rgba(80,40,10,0.55);
+    }
+
+    /* ============================================================
+       UNPLANNED STATE
+    ============================================================ */
+    .no-quest-wrap {
+      margin-bottom: 1rem;
+    }
+
+    .d20-stage {
+      margin: 0.4rem auto 0.8rem;
+      display: inline-block;
+      position: relative;
+    }
+
+    .d20-hex {
+      width: 76px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.75rem;
+      color: var(--gold-bright);
+      text-shadow: 0 0 12px rgba(240,192,64,0.55);
+      background: linear-gradient(145deg, #180900, #2a1206, #180900);
+      clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.75));
+      transition: filter 0.15s;
+    }
+    .d20-hex.rolling {
+      animation: shakeD20 0.1s ease-in-out infinite;
+    }
+    @keyframes shakeD20 {
+      0%, 100% { transform: rotate(-4deg); }
+      50%       { transform: rotate(4deg); }
+    }
+
+    .d20-label {
+      display: block;
+      font-size: 0.62rem;
+      font-style: italic;
+      color: #7a5018;
+      margin-top: 0.35rem;
+      text-align: center;
+    }
+
+    h2.no-quest-title {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 4vw, 1.7rem);
+      color: #3a2006;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Time setter panel */
+    .time-setter {
+      background: rgba(60,30,5,0.1);
+      border: 1.5px solid rgba(80,40,10,0.28);
+      border-radius: 4px;
+      padding: 1.3rem 1.2rem 1.1rem;
+      max-width: 300px;
+      margin: 1rem auto 0;
+      text-align: left;
+    }
+
+    .setter-row {
+      margin-bottom: 0.9rem;
+    }
+    .setter-row label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5c3010;
+      margin-bottom: 0.3rem;
+    }
+    .setter-input {
+      width: 100%;
+      background: rgba(255,248,220,0.92);
+      border: 2px solid #8a6020;
+      border-radius: 3px;
+      padding: 0.45rem 0.7rem;
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      color: var(--ink);
+      text-align: center;
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      -webkit-appearance: none;
+    }
+    .setter-input:focus {
+      border-color: #8a0000;
+      box-shadow: 0 0 0 2px rgba(120,0,0,0.18);
+    }
+    /* date input smaller font */
+    .setter-input[type="date"] { font-size: 1rem; }
+
+    .btn-summon {
+      width: 100%;
+      margin-top: 0.3rem;
+      background: linear-gradient(155deg, #680000 0%, #960000 50%, #680000 100%);
+      border: 2px solid #3a0000;
+      border-bottom-width: 4px;
+      color: var(--gold-bright);
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      border-radius: 3px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: filter 0.15s, transform 0.1s, box-shadow 0.1s;
+      position: relative;
+    }
+    .btn-summon:hover {
+      filter: brightness(1.15);
+    }
+    .btn-summon:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      border-bottom-width: 2px;
+    }
+
+    /* ============================================================
+       BADGE ZONE — ANTI-AI WARD
+    ============================================================ */
+    .badge-zone {
+      margin-top: 1.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(80,40,10,0.28);
+      text-align: center;
+    }
+
+    .badge-zone-title {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #7a5018;
+      margin-bottom: 0.65rem;
+      opacity: 0.75;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .badge-88x31 {
+      display: inline-block;
+      width: 88px;
+      height: 31px;
+      image-rendering: pixelated;
+      flex-shrink: 0;
+      border: 1px solid rgba(80,40,10,0.3);
+      vertical-align: middle;
+    }
+
+    .badge-link {
+      display: inline-block;
+      line-height: 0;
+      vertical-align: middle;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .dungeon-footer {
+      margin-top: 1.8rem;
+      text-align: center;
+      z-index: 50;
+      position: relative;
+    }
+    .footer-text {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.68rem;
+      color: rgba(180,130,60,0.38);
+      letter-spacing: 0.04em;
+    }
+    .footer-text a {
+      color: inherit;
+      opacity: 0.7;
+      text-underline-offset: 3px;
+    }
+    .footer-text a:hover { opacity: 1; }
+
+    /* ============================================================
+       MOBILE
+    ============================================================ */
+    @media (max-width: 440px) {
+      .torch-bl, .torch-br { display: none; }
+      .stamp { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dungeon-glow"></div>
+
+  <div class="torch torch-tl" aria-hidden="true">🔥</div>
+  <div class="torch torch-tr" aria-hidden="true">🔥</div>
+  <div class="torch torch-bl" aria-hidden="true">🔥</div>
+  <div class="torch torch-br" aria-hidden="true">🔥</div>
+
+  <main class="dungeon-hall">
+    <article class="scroll" role="main">
+      <div class="scroll-rod" aria-hidden="true"></div>
+
+      <div class="scroll-body">
+        <div class="stamp" aria-hidden="true">
+          ⚔ Human<br>Certified ⚔
+        </div>
+
+        <div class="scroll-content">
+
+          <div class="title-crest">〄 Adventurers' Convocation 〄</div>
+          <h1 class="title-main">Dungeons &amp; Dragons</h1>
+
+          <div class="divider" aria-hidden="true">
+            <span class="divider-icon">⚔️</span>
+            <span class="divider-icon">🐉</span>
+            <span class="divider-icon">⚔️</span>
+          </div>
+
+          <!-- ================================================
+               STATE: PLANNED — countdown active
+          ================================================ -->
+          <div id="state-planned">
+            <p class="quest-label">The quest has been called. Prepare thyself.</p>
+
+            <div class="countdown-wrap" id="cd-wrap">
+              <div class="time-unit">
+                <div class="time-number" id="cd-h">00</div>
+                <div class="time-label">Hours</div>
+              </div>
+              <div class="time-sep" aria-hidden="true">:</div>
+              <div class="time-unit">
+                <div class="time-number" id="cd-m">00</div>
+                <div class="time-label">Minutes</div>
+              </div>
+              <div class="time-sep" aria-hidden="true">:</div>
+              <div class="time-unit">
+                <div class="time-number" id="cd-s">00</div>
+                <div class="time-label">Seconds</div>
+              </div>
+            </div>
+
+            <div class="begun-message" id="begun-msg" role="alert">
+              ⚔️ The Session Has Begun! ⚔️
+            </div>
+
+            <p class="session-time-label" id="session-label"></p>
+
+            <button class="btn-cancel" onclick="cancelQuest()">
+              † The Dungeon Master hath fled — cancel session
+            </button>
+          </div>
+
+          <!-- ================================================
+               STATE: UNPLANNED — time setter active
+          ================================================ -->
+          <div id="state-unplanned">
+            <div class="no-quest-wrap">
+              <div class="d20-stage">
+                <div class="d20-hex" id="d20-face">?</div>
+                <span class="d20-label">awaiting the roll…</span>
+              </div>
+              <h2 class="no-quest-title">The Quest Has<br>Not Yet Been Called</h2>
+              <p class="quest-label">Set the hour of reckoning, then summon the party.</p>
+            </div>
+
+            <div class="time-setter">
+              <div class="setter-row">
+                <label for="input-date">Date of Reckoning</label>
+                <input type="date" class="setter-input" id="input-date">
+              </div>
+              <div class="setter-row">
+                <label for="input-time">Hour &amp; Minute</label>
+                <input type="time" class="setter-input" id="input-time" value="19:30">
+              </div>
+              <button class="btn-summon" onclick="summonParty()">
+                ⚔ SUMMON THE PARTY ⚔
+              </button>
+            </div>
+          </div>
+
+          <!-- ================================================
+               ANTI-AI WARD
+          ================================================ -->
+          <div class="badge-zone">
+            <div class="badge-zone-title">⊗ This parchment bears no AI taint ⊗</div>
+            <div class="badges" id="badge-row"></div>
+          </div>
+
+        </div><!-- /scroll-content -->
+      </div><!-- /scroll-body -->
+
+      <div class="scroll-rod" aria-hidden="true"></div>
+    </article>
+
+    <footer class="dungeon-footer">
+      <p class="footer-text">
+        Forged by mortal hands &middot; Zero LLMs &middot; Zero frameworks &middot;
+        <a href="https://notbyai.fyi" target="_blank" rel="noopener">not by AI</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    /* ============================================================
+       D&D NIGHT COUNTDOWN
+       Written character by character. No autocomplete was consulted.
+    ============================================================ */
+
+    const STORAGE_KEY = 'dnd_night_v2';
+
+    /* ---------- persistence ---------- */
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null; }
+      catch { return null; }
+    }
+    function saveState(s) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+    }
+
+    /* ---------- helpers ---------- */
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function todayISO() { return new Date().toISOString().slice(0, 10); }
+
+    /* ---------- countdown ---------- */
+    let ticker = null;
+
+    function startCountdown(isoDatetime) {
+      const target   = new Date(isoDatetime);
+      const cdWrap   = document.getElementById('cd-wrap');
+      const begunMsg = document.getElementById('begun-msg');
+      const label    = document.getElementById('session-label');
+
+      const fmt = { weekday: 'long', month: 'long', day: 'numeric',
+                    hour: 'numeric', minute: '2-digit' };
+      label.textContent = 'Convening: ' + target.toLocaleString('en-US', fmt);
+
+      function tick() {
+        const diff = target - Date.now();
+
+        if (diff <= 0) {
+          cdWrap.style.display   = 'none';
+          begunMsg.style.display = 'block';
+          clearInterval(ticker);
+          return;
+        }
+
+        cdWrap.style.display   = 'flex';
+        begunMsg.style.display = 'none';
+
+        const ts = Math.floor(diff / 1000);
+        document.getElementById('cd-h').textContent = pad(Math.floor(ts / 3600));
+        document.getElementById('cd-m').textContent = pad(Math.floor((ts % 3600) / 60));
+        document.getElementById('cd-s').textContent = pad(ts % 60);
+      }
+
+      clearInterval(ticker);
+      tick();
+      ticker = setInterval(tick, 1000);
+    }
+
+    /* ---------- state transitions ---------- */
+    function showPlanned()   {
+      document.getElementById('state-planned').style.display   = 'block';
+      document.getElementById('state-unplanned').style.display = 'none';
+    }
+    function showUnplanned() {
+      document.getElementById('state-planned').style.display   = 'none';
+      document.getElementById('state-unplanned').style.display = 'block';
+    }
+
+    function summonParty() {
+      const d = document.getElementById('input-date').value;
+      const t = document.getElementById('input-time').value;
+      if (!d || !t) { alert('Set the date and hour of reckoning first, adventurer.'); return; }
+
+      const iso = d + 'T' + t + ':00';
+      if (isNaN(new Date(iso).getTime())) { alert('That date is cursed. Try again.'); return; }
+
+      saveState({ planned: true, datetime: iso });
+      showPlanned();
+      startCountdown(iso);
+    }
+
+    function cancelQuest() {
+      if (!confirm('Cancel D&D night? The dungeon will wait…')) return;
+      clearInterval(ticker);
+      saveState({ planned: false, datetime: null });
+      showUnplanned();
+      rollD20();
+    }
+
+    /* ---------- d20 consolation roll ---------- */
+    function rollD20() {
+      const face = document.getElementById('d20-face');
+      if (!face) return;
+      face.classList.add('rolling');
+      let i = 0, frames = 18;
+      const spin = () => {
+        face.textContent = Math.ceil(Math.random() * 20);
+        if (++i < frames) setTimeout(spin, 55 + i * 6);
+        else face.classList.remove('rolling');
+      };
+      spin();
+    }
+
+    /* ---------- 88x31 anti-AI badges ---------- */
+    function makeSVGBadge(left, right, bgL, bgR, fgL = '#fff', fgR = '#fff') {
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31">
+        <rect width="44" height="31" fill="${bgL}"/>
+        <rect x="44" width="44" height="31" fill="${bgR}"/>
+        <text x="22" y="21" font-family="monospace" font-size="9.5" font-weight="bold"
+              fill="${fgL}" text-anchor="middle">${left}</text>
+        <text x="66" y="21" font-family="monospace" font-size="9.5" font-weight="bold"
+              fill="${fgR}" text-anchor="middle">${right}</text>
+        <rect width="88" height="31" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>
+      </svg>`;
+    }
+
+    function renderBadges() {
+      const row = document.getElementById('badge-row');
+
+      const specs = [
+        ['HUMAN',  'MADE',    '#14146e', '#b80000'],
+        ['NO',     'A·I',     '#1c1c1c', '#aa0000'],
+        ['HAND',   'CODED',   '#006020', '#004a18'],
+        ['0%',     'AI',      '#7a0000', '#3e0000'],
+        ['HTML',   'ONLY',    '#cc4400', '#aa3300'],
+        ['FORGED', 'BY HAND', '#3c1e06', '#201004'],
+        ['WEB',    '1.0',     '#000070', '#00006a'],
+      ];
+
+      specs.forEach(([l, r, bgL, bgR]) => {
+        const img = document.createElement('img');
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(makeSVGBadge(l, r, bgL, bgR));
+        img.className = 'badge-88x31';
+        img.alt = l + ' ' + r;
+        img.title = l + ' ' + r;
+        row.appendChild(img);
+      });
+
+      /* notbyai.fyi official-style badge */
+      const nbai = document.createElement('a');
+      nbai.href = 'https://notbyai.fyi';
+      nbai.target = '_blank';
+      nbai.rel = 'noopener noreferrer';
+      nbai.className = 'badge-link';
+      nbai.title = 'Written by a human, not by AI';
+      const nbaiSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31">
+        <rect width="88" height="31" rx="2" fill="#12101e"/>
+        <text x="44" y="10" font-family="monospace" font-size="6.5" fill="#999"
+              text-anchor="middle">WRITTEN BY A</text>
+        <text x="44" y="21" font-family="monospace" font-size="10" font-weight="bold"
+              fill="#f0c040" text-anchor="middle">HUMAN ✦</text>
+        <text x="44" y="29" font-family="monospace" font-size="5.5" fill="#666"
+              text-anchor="middle">notbyai.fyi</text>
+        <rect width="88" height="31" fill="none" stroke="rgba(240,192,64,0.35)"
+              stroke-width="1" rx="2"/>
+      </svg>`;
+      nbai.innerHTML = nbaiSVG;
+      row.appendChild(nbai);
+
+      /* Safe hand-made code badge (40ants style) */
+      const shmSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31">
+        <rect width="88" height="31" fill="#1a2e1a"/>
+        <text x="44" y="11" font-family="monospace" font-size="6" fill="#6a9" text-anchor="middle">SAFE</text>
+        <text x="44" y="21" font-family="monospace" font-size="9" font-weight="bold"
+              fill="#32CD32" text-anchor="middle">HAND MADE</text>
+        <text x="44" y="29" font-family="monospace" font-size="5.5" fill="#5a8" text-anchor="middle">CODE</text>
+        <rect width="88" height="31" fill="none" stroke="rgba(50,205,50,0.3)" stroke-width="1"/>
+      </svg>`;
+      const shm = document.createElement('img');
+      shm.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(shmSVG);
+      shm.className = 'badge-88x31';
+      shm.alt = 'Safe Hand Made Code';
+      shm.title = 'Safe: Hand Made Code (40ants style)';
+      row.appendChild(shm);
+    }
+
+    /* ---------- boot ---------- */
+    function init() {
+      document.getElementById('input-date').value = todayISO();
+
+      renderBadges();
+      setTimeout(rollD20, 600);
+
+      const s = loadState();
+      if (s && s.planned && s.datetime) {
+        showPlanned();
+        startCountdown(s.datetime);
+      } else {
+        showUnplanned();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
